@@ -1,0 +1,11 @@
+# Ignore node_modules folder
+node_modules/
+
+# Ignore .env file (sensitive data)
+.env
+
+# Ignore npm logs
+npm-debug.log
+
+# Ignore VS Code settings (if applicable)
+.vscode/

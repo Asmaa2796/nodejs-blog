@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs') %>
+
+    <body>
+        <%- include('../partials/navbar.ejs') %>
+            <div class="blog">
+                <div class="container">
+                    <h3 class="my-3">
+                        <%= title %>
+                    </h3>
+                    <div class="card my-3 shadow-sm p-4">
+                        <% if (blog) { %>
+                            <h4 class="text-color d-flex align-items-center">
+                                <i class="fas fa-caret-left text-lg mr-1"></i>
+                                <%= blog.title %>
+                            </h4>
+                            <hr>
+                            <b class="d-flex align-items-center">
+                                <i class="fas fa-circle text-xs mr-1"></i>
+                                <%= blog.snippet %>
+                            </b>
+                            <p class="line-height desc text-secondary my-3">
+                                <%= blog.desc %>
+                            </p>
+                            <hr>
+                            <div class="d-flex justify-content-between">
+                                <a data-delete="<%= blog._id %>" class="delete text-danger font-weight-bold">Delete <i
+                                        class="fas fa-trash text-sm"></i></a>
+                                <a href="/blog/update/<%= blog._id %>" class="text-success font-weight-bold">Edit <i
+                                        class="fas fa-pencil-alt text-sm"></i></a>
+                            </div>
+                            <% }
+                            else { 
+                                %><h4 class="text-center mb-0">No blog to display</h4><%
+                            } 
+                            %>
+                    </div>
+                </div>
+            </div>
+            <%- include('../partials/footer.ejs') %>
+
+                <script>
+                    const trash = document.querySelector('a.delete');
+                    trash.addEventListener('click', (e) => {
+                        const endpoint = `/blogDetails/${trash.dataset.delete}`;
+                        fetch(endpoint,{
+                            method : "DELETE"
+                        })
+                        .then((response) => response.json())
+                        .then((data) => window.location.href = data.redirect)
+                        .catch((err) => console.log(err));
+                    });
+                </script>
+    </body>
+
+</html>
