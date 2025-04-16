@@ -1,10 +1,10 @@
 :root {
-  --main-color: #4D4CAC;
-  --sub-color: #ff808bbb;
-  --sec-color: #9698D6;
+  --main-color: #429EBD;
+  --sub-color: #F27F0C;
+  --sec-color: #F7AD19;
+  --sec1-color: #053F5C;
   --shadow: 0px 3px 5px 0px rgb(0 0 0 / 9%)
 }
-
 @font-face {
   font-family: Outfit;
   src: url(../OutfitRegular.ttf);
@@ -19,7 +19,7 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: var(--main-color);
+  background-color: #ccc;
   border-radius: 20px;
   border: 1px solid #ddd;
 }
@@ -29,7 +29,7 @@ body {
   font-family: "Outfit", sans-serif !important;
   position: relative;
   overflow-x: hidden;
-  background-color: var(--dark-color) !important;
+  background-color: #fdfdfd;
 }
 
 /* custom */
@@ -52,6 +52,9 @@ a {
 
 .sec-color {
   color: var(--sec-color);
+}
+.sec1-color {
+  color: var(--sec1-color);
 }
 
 .text-gray {
@@ -94,13 +97,14 @@ a {
 .b25 {
   border-radius: 25px !important;
 }
+.shadow-sm {box-shadow: 0 .325rem .58rem rgba(0, 0, 0, 0.171) !important;}
 /* form style */
 .form-style h4 {font-weight: bold;}
 .form-style {
   margin: 40px auto 20px;
 }
 .form-style form {
-  border-radius: 8px;
+  border-radius: 5px;
   background-color: #fff;
   border: 1px solid #ddd;
   padding: 28px;
@@ -108,7 +112,6 @@ a {
 }
 .form-style label {
   display: block;
-  font-weight: bold;
   margin: 10px 0;
 }
 .form-style input {
@@ -116,11 +119,13 @@ a {
   width: 100%;
   border: 1px solid #eee;
   border-radius: 4px;
+  background-color: #fdfdfd;
   height: 40px;
   margin: 5px 0;
 }
 .form-style textarea {
   padding: 0px 10px;
+  background-color: #fdfdfd;
   width: 100%;
   border: 1px solid #eee;
   border-radius: 4px;
@@ -146,5 +151,12 @@ a {
    -webkit-line-clamp: 3; /* number of lines to show */
            line-clamp: 3; 
    -webkit-box-orient: vertical;
+  font-size: 15px;
 }
-.card {border-left: 2px solid var(--sub-color);}
+/* navbar */
+.navbar {
+  background: linear-gradient(90deg,#1a8cc5,#18799a);
+}
+.navbar .navbar-brand img {width: auto;max-height: 50px;}
+.navbar .nav-item {margin-left: 10px;}
+.navbar .nav-link {color: #fff;}

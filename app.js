@@ -1,33 +1,35 @@
-require('dotenv').config();
+const express = require("express");
+const mongoose = require("mongoose");
+// express app
+const app = express();
+require("dotenv").config();
 
 // Now you can use the environment variables
 const port = process.env.PORT || 3000;
 const dbUri = process.env.MONGO_URI;
 
 console.log(`App is running on port ${port}`);
-// ##########
-const express = require("express");
-const mongoose = require("mongoose");
-const Blog = require("./models/blog");
-
-// express app
-const app = express();
-
 // connect mongodb
-
 mongoose
   .connect(dbUri)
   .then((result) => app.listen(3000))
   .catch((err) => console.log(err));
 
+// ##########
+const blogRoutes = require("./routes/blogRoutes");
+const expressLayouts = require("express-ejs-layouts");
 // use view engine
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 // passing data from a form to request
 app.use(express.urlencoded());
+// for global layout
+app.use(expressLayouts);
+app.set("layout", "layout");
 
-const methodOverride = require('method-override');
-app.use(methodOverride('_method'));
+// method override PUT | POST
+const methodOverride = require("method-override");
+app.use(methodOverride("_method"));
 
 // routes
 app.get("/", (req, res) => {
@@ -49,76 +51,7 @@ app.get("/about-us", (req, res) => {
   res.redirect("/about");
 });
 
-
-// ## blog routes
-// new blog
-app.get("/blog/create", (req, res) => {
-    res.render("blog/createBlog", { title: "New blog" });
-});
-app.post('/all_blogs',(req,res) => {
-    const blog = new Blog(req.body);
-    blog.save()
-    .then((result) => {
-        res.redirect("/all_blogs");
-    })
-    .catch((err) => {
-        console.log(err);
-    });
-});
-// update blog
-app.get("/blog/update/:id", (req, res) => {
-    const id = req.params.id;
-    Blog.findById(id)
-    .then((result) => {
-        res.render("blog/editBlog", { title: "Update blog" ,blog:result});
-    })
-    .catch((err) => console.log(err));
-});
-app.put('/blog/update/:id',(req,res) => {
-    const id = req.params.id;
-    Blog.findByIdAndUpdate(id,req.body,{
-        new : true
-    })
-    .then((result) => {
-        res.redirect("/all_blogs");
-    })
-    .catch((err) => {
-        console.log(err);
-    });
-});
-// get all blogs
-app.get("/all_blogs", (req, res) => {
-  Blog.find().sort({createdAt:-1})
-    .then((result) => {
-      res.render("blog/blogs", { title: "All Blogs", blogs: result });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
-// single record | blog details
-app.get("/blogDetails/:id", (req, res) => {
-    const id = req.params.id;
-    Blog.findById(id)
-      .then((result) => {
-        res.render("blog/blogDetails", { title: "Blog Details",blog:result});
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  });
-// delete record | blog delete
-app.delete("/blogDetails/:id", (req, res) => {
-    const id = req.params.id;
-    Blog.findByIdAndDelete(id)
-      .then((result) => {
-        res.json({redirect:'/all_blogs'});
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  });
-
+app.use(blogRoutes);
 // 404 page
 app.use((req, res) => {
   res.status(404).render("404", { title: "Oops 404" });

@@ -1,24 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-    <%- include('../partials/head.ejs') %>
-
-<body>
-    <%- include('../partials/navbar.ejs') %>
-    <div class="blog form-style">
-        <div class="container">
-            <h4 class="text-center my-4 text-color"><%= title %></h4>
-        <form class="shadow-sm" action="/all_blogs" method="post">
-            <label for="title">Blog title</label>
-            <input type="text" id="title" name="title" required>
-            <label for="snippet">Blog snippet</label>
-            <input type="text" id="snippet" name="snippet" required>
-            <label for="desc">Blog description</label>
-            <textarea id="desc" name="desc" required></textarea>
-            <button type="submit">Submit</button>
-        </form>
-        </div>
+<div class="blog form-style">
+    <div class="container">
+        <h4 class="text-center my-4 text-color"><%= title %></h4>
+    <form class="shadow-sm" action="/all_blogs" method="post">
+        <label for="title">Blog title</label>
+        <input type="text" id="title" name="title" required>
+        <label for="snippet">Blog snippet</label>
+        <input type="text" id="snippet" name="snippet" required>
+        <label for="desc">Blog description</label>
+        <textarea id="desc" name="desc" required></textarea>
+        <button type="submit">Submit</button>
+    </form>
     </div>
-    <%- include('../partials/footer.ejs') %>
-</body>
-
-</html>
+</div>

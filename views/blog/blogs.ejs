@@ -1,40 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<%- include('../partials/head.ejs') %>
-
-    <body>
-        <%- include('../partials/navbar.ejs') %>
-            <div class="blogs py-5">
-                <div class="container">
-                    <h2>All blogs</h2>
-                    <div class="row">
-                        <% if (blogs.length> 0) { %>
-                            <% blogs.forEach(item=> { %>
-                                <div class="col-lg-6">
-                                    <div class="card my-3 shadow-sm p-4">
-                                        <h4 class="text-color d-flex align-items-center">
-                                            <i class="fas fa-caret-left text-lg mr-1"></i>
-                                            <%= item.title %>
-                                        </h4>
-                                        <hr>
-                                        <b class="d-flex align-items-center">
-                                            <i class="fas fa-circle text-xs mr-1"></i>
-                                            <%= item.snippet %>
-                                        </b>
-                                        <p class="line-height desc text-secondary my-3">
-                                            <%= item.desc %>
-                                        </p>
-                                        <a href="/blogDetails/<%= item._id %>" class="text-color">View details <i class="fas fa-angle-double-right text-sm"></i></a>
-                                    </div>
-                                </div>
-                                <% }) %>
-                                    <% } else { %>
-                                        <h4 class="card text-center shadow-sm p-5 col-lg-12">No blogs to display</h4>
-                                        <% } %>
+<div class="blogs py-5">
+    <div class="container">
+        <h2>All blogs</h2>
+        <div class="row">
+            <% if (blogs.length> 0) { %>
+                <% blogs.forEach(item=> { %>
+                    <div class="col-lg-6">
+                        <div class="card border my-3 shadow-sm p-4">
+                            <h4 class="text-color d-flex align-items-center">
+                                <i class="fas fa-caret-left text-lg mr-1"></i>
+                                <%= item.title %>
+                            </h4>
+                            <hr>
+                            <b class="d-flex align-items-center">
+                                <i class="fas fa-circle text-xs mr-1"></i>
+                                <%= item.snippet %>
+                            </b>
+                            <p class="line-height desc text-secondary my-3">
+                                <%= item.desc %>
+                            </p>
+                            <a href="/blogDetails/<%= item._id %>" class="sub-color details-link">View details <i class="fas fa-angle-double-right text-sm"></i></a>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <%- include('../partials/footer.ejs') %>
-    </body>
-
-</html>
+                    <% }) %>
+                        <% } else { %>
+                            <h4 class="card text-center shadow-sm p-5 col-lg-12">No blogs to display</h4>
+                            <% } %>
+        </div>
+    </div>
+</div>
+    

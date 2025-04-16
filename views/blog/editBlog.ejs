@@ -1,30 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<%- include('../partials/head.ejs') %>
-
-    <body>
-        <%- include('../partials/navbar.ejs') %>
-            <div class="blog form-style">
-                <div class="container">
-                    <% if (blog) { %>
-                        <h4 class="text-center my-4 text-color">
-                            <%= title %>
-                        </h4>
-                        <form class="shadow-sm" action="/blog/update/<%= blog._id %>?_method=PUT" method="POST">
-                            <label for="title">Blog title</label>
-                            <input type="text" id="title" name="title" value="<%= blog.title %>" required>
-                            <label for="snippet">Blog snippet</label>
-                            <input type="text" id="snippet" name="snippet" value="<%= blog.snippet %>" required>
-                            <label for="desc">Blog description</label>
-                            <textarea id="desc" name="desc" required><%= blog.desc %></textarea>
-                            <button type="submit">Update</button>
-                        </form>
-                        <% } else {%>
-                            <h4 class="card text-center shadow-sm p-5 col-lg-12">No blogs to update</h4>
-                            <%} %>
-                </div>
-            </div>
-            <%- include('../partials/footer.ejs') %>
-    </body>
-
-</html>
+<div class="blog form-style">
+    <div class="container">
+        <% if (blog) { %>
+            <h4 class="text-center my-4 text-color">
+                <%= title %>
+            </h4>
+            <form class="shadow-sm" action="/blog/update/<%= blog._id %>?_method=PUT" method="POST">
+                <label for="title">Blog title</label>
+                <input type="text" id="title" name="title" value="<%= blog.title %>" required>
+                <label for="snippet">Blog snippet</label>
+                <input type="text" id="snippet" name="snippet" value="<%= blog.snippet %>" required>
+                <label for="desc">Blog description</label>
+                <textarea id="desc" name="desc" required><%= blog.desc %></textarea>
+                <button type="submit">Update</button>
+            </form>
+            <% } else {%>
+                <h4 class="card text-center shadow-sm p-5 col-lg-12">No blogs to update</h4>
+                <%} %>
+    </div>
+</div>
