@@ -52,7 +52,7 @@ const blog_details = (req, res) => {
       res.render("blog/blogDetails", { title: "Blog Details", blog: result });
     })
     .catch((err) => {
-      console.log(err);
+      res.render('404',{title:'Blog Not Found'});
     });
 };
 const blog_delete = (req, res) => {

@@ -165,3 +165,4 @@ a {
   max-height: 28px;
 }
 .navbar .navbar-toggler:focus {outline: none;} 
+.not-found img {width: 450px;max-width: 85%;}
