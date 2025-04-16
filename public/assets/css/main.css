@@ -160,3 +160,8 @@ a {
 .navbar .navbar-brand img {width: auto;max-height: 50px;}
 .navbar .nav-item {margin-left: 10px;}
 .navbar .nav-link {color: #fff;}
+.navbar img {
+  width: auto;
+  max-height: 28px;
+}
+.navbar .navbar-toggler:focus {outline: none;} 
